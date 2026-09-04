@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pre-built embeddable CS2 stat widgets — pick a player, choose a widget, copy the iframe code into any website." />
+    <meta name="theme-color" content="#080d1b" />
+    <title>EMBED WIDGETS // MIDNIGHT FIELD</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('arshi-theme') || 'midnight';
+          var m = { midnight: '#080d1b', daybreak: '#f4efe6', synthwave: '#0d0416', forest: '#0a130d', terminal: '#0b0a07' }[t];
+          document.documentElement.setAttribute('data-theme', t);
+          if (m) document.querySelector('meta[name="theme-color"]').setAttribute('content', m);
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="widgets">
+    <a class="skip-link" href="#widgets-content">Skip to widgets</a>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Midnight Field home">
+          <span class="brand-mark">✦</span>
+          <span><b>FIELD DOSSIER</b><small>UNIVERSAL CS2 TRACKER</small></span>
+        </a>
+        <div class="topbar-status"><i></i><span>EMBED WORKSHOP</span><b>IFRAME SNIPPETS</b></div>
+        <div class="topbar-actions">
+          <a class="icon-button" href="https://csstats.gg/player" target="_blank" rel="noreferrer" aria-label="Open CSStats">↗</a>
+          <div class="theme-switch">
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Switch color theme">
+              <span class="theme-swatch" aria-hidden="true"><i class="a"></i><i class="b"></i></span>
+              <span class="theme-toggle-label" id="theme-toggle-label">MIDNIGHT</span>
+              <span class="theme-caret" aria-hidden="true">▾</span>
+            </button>
+            <div class="theme-menu" id="theme-menu" role="menu" aria-label="Color themes">
+              <p class="theme-menu-title">COLOR THEME</p>
+              <button type="button" role="menuitem" data-theme="midnight"><i class="theme-dots" style="--a:#f07aa5;--b:#8eddd5"></i><span><b>MIDNIGHT</b><small>NEON SAKURA</small></span><em class="check">✓</em></button>
+              <button type="button" role="menuitem" data-theme="daybreak"><i class="theme-dots" style="--a:#d64545;--b:#0e7a72"></i><span><b>DAYBREAK</b><small>WARM PAPER</small></span><em class="check">✓</em></button>
+              <button type="button" role="menuitem" data-theme="synthwave"><i class="theme-dots" style="--a:#ff3ecf;--b:#21e6ff"></i><span><b>SYNTHWAVE</b><small>RETRO NEON</small></span><em class="check">✓</em></button>
+              <button type="button" role="menuitem" data-theme="forest"><i class="theme-dots" style="--a:#e8914f;--b:#7fd8a4"></i><span><b>FOREST</b><small>DEEP MOSS</small></span><em class="check">✓</em></button>
+              <button type="button" role="menuitem" data-theme="terminal"><i class="theme-dots" style="--a:#ffb64d;--b:#cfe3a8"></i><span><b>TERMINAL</b><small>PHOSPHOR CRT</small></span><em class="check">✓</em></button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <nav class="site-nav" aria-label="Primary">
+        <div class="site-nav-links">
+          <a class="site-link" href="index.html">HOME</a>
+          <a class="site-link" href="player.html">PROFILE</a>
+          <a class="site-link" href="compare.html">COMPARE</a>
+          <a class="site-link active" href="widgets.html" aria-current="page">WIDGETS</a>
+          <a class="site-link accent" href="arshi.html">ARSHI DOSSIER</a>
+        </div>
+        <div class="site-search">
+          <input id="nav-search" type="search" placeholder="Search any player…  name / Steam ID / profile URL" autocomplete="off" role="combobox" aria-expanded="false" aria-label="Search players" />
+          <div class="search-results" id="nav-search-results" role="listbox"></div>
+        </div>
+      </nav>
+
+      <main id="widgets-content">
+        <section class="wg-stage">
+          <p class="eyebrow">EMBED SYSTEM <span>// IFRAME SNIPPETS</span></p>
+          <h1 class="wg-title">Ship live stats to <strong>any site</strong></h1>
+          <p class="wg-sub">Pick a tracked player, choose a widget shape, then copy one line of code. The snippet auto-loads the player's current stats and updates whenever they play.</p>
+        </section>
+
+        <section class="wg-player panel" id="wg-player-panel">
+          <div class="panel-heading"><span>STEP 1 // CHOOSE A PLAYER</span><span class="season-chip">REGISTRY + RECENT</span></div>
+          <div class="wg-player-body">
+            <div class="slot-body">
+              <div class="slot-placeholder wg-placeholder" id="wg-pick" role="button" tabindex="0">CHOOSE PLAYER <span>⌕</span></div>
+              <div class="slot-picker" id="wg-picker" hidden>
+                <input id="wg-search" type="search" placeholder="Search by name, Steam ID, or URL…" autocomplete="off" role="combobox" aria-expanded="false" aria-label="Pick a player for widgets" />
+                <div class="search-results" id="wg-search-results" role="listbox"></div>
+              </div>
+            </div>
+            <div class="wg-player-note" id="wg-player-note" hidden></div>
+          </div>
+        </section>
+
+        <section class="widget-gallery" id="widget-gallery" aria-live="polite">
+          <div class="wg-message" id="wg-message"><span class="wg-ghost">▮▮▮</span><p>Choose a player above to unlock the widget previews.</p></div>
+        </section>
+      </main>
+
+      <footer class="footer"><span>MIDNIGHT FIELD // EMBED WORKSHOP</span><span>WIDGETS RENDER <a href="player.html" >PLAYER.HTML ↗</a></span><span>REGISTRY DRIVEN · SEPT 2026</span></footer>
+    </div>
+
+    <div class="modal-backdrop" id="embed-modal" hidden>
+      <div class="modal panel" role="dialog" aria-modal="true" aria-labelledby="embed-modal-title">
+        <div class="modal-head"><p class="eyebrow">WIDGET CODE</p><button class="modal-close" id="embed-modal-close" type="button" aria-label="Close">✕</button></div>
+        <h2 id="embed-modal-title">Embed this widget</h2>
+        <p class="modal-desc" id="embed-modal-desc"></p>
+        <div class="code-block"><pre id="embed-code" tabindex="0"></pre><button class="copy-button" id="embed-copy" type="button">COPY CODE</button></div>
+        <p class="modal-note" id="embed-note"></p>
+        <div class="empty-actions"><a class="hero-cta" id="embed-preview-link" href="#" target="_blank" rel="noreferrer">OPEN PREVIEW ↗</a><button class="hero-cta ghost" id="embed-done" type="button">DONE</button></div>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="data/players.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/widgets-page.js"></script>
+  </body>
+</html>

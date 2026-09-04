@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Arshi's midnight anime-inspired CS2 performance dossier: combat rhythm, weapon signature, map territory, and match archive." />
+    <meta name="description" content="Midnight Field — a universal, anime-styled CS2 stat tracker. Search any player, compare two players, or embed live stat widgets." />
     <meta name="theme-color" content="#080d1b" />
-    <title>ARSHI // MIDNIGHT FIELD DOSSIER</title>
+    <title>MIDNIGHT FIELD // UNIVERSAL CS2 TRACKER</title>
     <script>
       (function () {
         try {
@@ -21,34 +21,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <a class="skip-link" href="#dashboard-content">Skip to dashboard content</a>
+  <body data-page="home">
+    <a class="skip-link" href="#page-content">Skip to content</a>
     <div class="noise" aria-hidden="true"></div>
-    <div class="skeleton" id="skeleton" aria-hidden="true">
-      <div class="sk-shell">
-        <div class="sk-topbar">
-          <div class="sk-brand"><span class="sk-diamond"></span><span class="sk-pill"></span></div>
-          <span class="sk-pill sk-pill-wide"></span>
-          <div class="sk-actions"><span class="sk-dot"></span><span class="sk-dot"></span></div>
-        </div>
-        <div class="sk-grid sk-hero"><div class="sk-card tall"></div><div class="sk-card tall"></div></div>
-        <div class="sk-notice"></div>
-        <div class="sk-strip"></div>
-        <div class="sk-grid sk-metrics"><div class="sk-card short"></div><div class="sk-card short"></div><div class="sk-card short"></div><div class="sk-card short"></div></div>
-        <div class="sk-grid sk-duo"><div class="sk-card"></div><div class="sk-card"></div></div>
-        <div class="sk-grid sk-duo"><div class="sk-card"></div><div class="sk-card"></div></div>
-      </div>
-    </div>
     <div class="page-shell">
       <header class="topbar">
-        <a class="brand" href="#overview" aria-label="Arshi dashboard home">
+        <a class="brand" href="index.html" aria-label="Midnight Field home">
           <span class="brand-mark">✦</span>
-          <span><b>ARSHI</b><small>MIDNIGHT FIELD DOSSIER</small></span>
+          <span><b>FIELD DOSSIER</b><small>UNIVERSAL CS2 TRACKER</small></span>
         </a>
-        <div class="topbar-status"><i></i><span>LOCAL SNAPSHOT</span><b id="last-sync">SYNCED 02M AGO</b></div>
+        <div class="topbar-status"><i></i><span>LOCAL SNAPSHOT MODE</span><b>SELF-HOSTED</b></div>
         <div class="topbar-actions">
-          <a class="icon-button" href="https://csstats.gg/player/76561199524171843" target="_blank" rel="noreferrer" aria-label="Open source stats">↗</a>
-          <button class="refresh-button" id="refresh-button" type="button"><span class="refresh-icon">↻</span> REFRESH DATA</button>
+          <a class="icon-button" href="https://csstats.gg/player" target="_blank" rel="noreferrer" aria-label="Open CSStats">↗</a>
           <div class="theme-switch">
             <button class="theme-toggle" id="theme-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Switch color theme">
               <span class="theme-swatch" aria-hidden="true"><i class="a"></i><i class="b"></i></span>
@@ -67,83 +51,86 @@
         </div>
       </header>
 
-      <main id="dashboard-content">
-        <section class="hero-grid" id="overview">
-          <article class="profile-card panel">
-            <div class="profile-orbit orbit-one"></div>
-            <div class="profile-orbit orbit-two"></div>
-            <div class="portrait-wrap">
-              <div class="portrait-ring"></div>
-              <img src="https://avatars.steamstatic.com/a861eeff5261636d6fc23597162c57e40326b61a_full.jpg" alt="Steam avatar of Arshi" class="portrait" />
-              <span class="online-dot" title="Profile loaded"></span>
-            </div>
-            <div class="profile-copy">
-              <p class="eyebrow">PLAYER PROFILE <span>// 001</span></p>
-              <h1>✠ <strong>𝐀𝐑𝐬𝐡𝐢</strong></h1>
-              <a class="steam-link" href="https://steamcommunity.com/profiles/76561199524171843" target="_blank" rel="noreferrer">STEAM ID 76561199524171843 <span>↗</span></a>
-              <div class="profile-tags"><span>VALVE</span><span>5V5</span><span>COMPETITIVE</span></div>
-            </div>
-            <div class="profile-stamp"><span>RANKED</span><b>CS2</b></div>
-          </article>
+      <nav class="site-nav" aria-label="Primary">
+        <div class="site-nav-links">
+          <a class="site-link active" href="index.html" aria-current="page">HOME</a>
+          <a class="site-link" href="compare.html">COMPARE</a>
+          <a class="site-link" href="widgets.html">WIDGETS</a>
+          <a class="site-link accent" href="arshi.html">ARSHI DOSSIER</a>
+        </div>
+        <div class="site-search">
+          <input id="nav-search" type="search" placeholder="Search any player…  name / Steam ID / profile URL" autocomplete="off" role="combobox" aria-expanded="false" aria-label="Search players" />
+          <div class="search-results" id="nav-search-results" role="listbox"></div>
+        </div>
+      </nav>
 
-          <article class="rank-card panel">
-            <div class="panel-heading"><span>COMPETITIVE RANK</span><span class="season-chip">SEASON 5</span></div>
-            <div class="rank-stage">
-              <div class="rank-symbol" id="rank-symbol-icon"></div>
-              <div class="rank-copy"><b>Silver I</b><span>Current placement</span><em>BEST // Silver I ×6</em></div>
-            </div>
-            <div class="rank-meter"><div class="meter-label"><span>SEASON PROGRESS</span><b>0 WINS</b></div><div class="meter-track"><i></i></div><small>Play one Valve match to reactivate tracking</small></div>
-            <div class="rank-ladder">
-              <div class="ladder-label"><span>RANK LADDER</span><b>SILVER I // 16 RANKS</b></div>
-              <div class="ladder-row" id="rank-ladder"></div>
-            </div>
-            <div class="rank-footer"><span><i class="pulse"></i> DATA INACTIVE</span><span>LAST ACTIVE 2MO AGO</span></div>
-          </article>
-        </section>
-
-        <div class="notice-bar"><span class="notice-icon">!</span><p><b>TRACKING INACTIVE.</b> The source snapshot is based on your supplied CSStats page. A Valve match from the past 30 days is required to reactivate live tracking.</p><a href="https://csstats.gg/getting-the-sharecode" target="_blank" rel="noreferrer">ADD MATCH ↗</a></div>
-
-        <section class="command-strip" aria-label="Dashboard controls">
-          <nav class="tabs" id="tabs">
-            <button class="tab active" type="button" data-view="overview" aria-current="page">OVERVIEW</button>
-            <button class="tab" type="button" data-view="weapons">WEAPONS</button>
-            <button class="tab" type="button" data-view="maps">MAPS</button>
-            <button class="tab" type="button" data-view="matches">MATCHES</button>
-          </nav>
-          <div class="view-controls"><span class="live-dot"></span><span id="view-label">ALL TIME // 183 GAMES</span><button class="filter-button" id="filter-button" type="button">FILTER: ALL ▾</button></div>
-        </section>
-
-        <section class="view view-overview active" data-panel="overview">
-          <div class="metric-grid">
-            <article class="metric-card panel accent-pink"><div class="metric-top"><span>K/D RATIO</span><span class="metric-glyph">⌁</span></div><strong>0.59</strong><div class="metric-bottom"><span class="delta negative">−0.41</span><span>vs. 1.00 baseline</span></div></article>
-            <article class="metric-card panel accent-cyan"><div class="metric-top"><span>HLTV RATING</span><span class="metric-glyph">◈</span></div><strong>0.68</strong><div class="metric-bottom"><span class="delta negative">−0.32</span><span>impact index</span></div></article>
-            <article class="metric-card panel accent-yellow"><div class="metric-top"><span>WIN RATE</span><span class="metric-glyph">◒</span></div><strong>33<small>%</small></strong><div class="metric-bottom"><span class="delta">60 WINS</span><span>110 losses · 13 ties</span></div></article>
-            <article class="metric-card panel accent-violet"><div class="metric-top"><span>HEADSHOT RATE</span><span class="metric-glyph">✧</span></div><strong>52<small>%</small></strong><div class="metric-bottom"><span class="delta">861 HS</span><span>1,669 total kills</span></div></article>
+      <main id="page-content">
+        <section class="home-hero panel" id="search">
+          <div class="hero-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <p class="eyebrow">UNIVERSAL PLAYER INDEX <span>// 002</span></p>
+          <h1 class="hero-title">Who are we<br /><strong>reading</strong> tonight?</h1>
+          <p class="hero-sub">Every player in the dossier — Arshi, friends, rivals — lives behind this one search bar. Pick a name, drop in a Steam profile link, or paste a 17-digit Steam ID.</p>
+          <div class="search-console">
+            <span class="search-console-glyph" aria-hidden="true">⌕</span>
+            <input id="home-search" type="search" placeholder="Search by name, Steam ID, or full profile URL…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="home-search-results" aria-label="Universal player search" />
+            <span class="search-console-key" aria-hidden="true">↵</span>
+            <div class="search-results large" id="home-search-results" role="listbox" aria-label="Player results"></div>
           </div>
+          <div class="search-hints">
+            <span>TRY</span>
+            <button type="button" class="hint-chip" data-hint="Arshi">✠ ARSHI</button>
+            <button type="button" class="hint-chip" data-hint="76561199556226328">_$a\/@gE-</button>
+            <button type="button" class="hint-chip" data-hint="76561199524171843">PASTE A STEAM ID</button>
+          </div>
+          <div class="hero-foot"><span><i class="pulse"></i> REGISTRY LIVE · <b id="registry-count">2</b> TRACKED</span><a class="text-button" href="compare.html">COMPARE TWO PLAYERS ↗</a></div>
+        </section>
 
-          <div class="content-grid">
-            <article class="chart-card panel">
-              <div class="card-heading"><div><p class="eyebrow">PERFORMANCE TELEMETRY</p><h2>Combat rhythm</h2></div><div class="chart-legend"><span><i class="legend-pink"></i> K/D</span><span><i class="legend-cyan"></i> WIN RATE</span></div></div>
-              <div class="chart-area"><div class="chart-y"><span>1.0</span><span>0.75</span><span>0.50</span><span>0.25</span><span>0</span></div><div class="chart"><div class="chart-line line-kd"></div><div class="chart-line line-win"></div><div class="chart-grid-lines"><i></i><i></i><i></i><i></i><i></i></div><div class="chart-x"><span>JUN</span><span>JUL</span><span>AUG</span><span>SEP</span><span>OCT</span><span>NOV</span></div></div></div>
-              <div class="chart-callout"><span class="callout-pin"></span><b>Current read</b><span>Low conversion, high headshot discipline. Focus next session on opening duels.</span></div>
+        <div class="home-grid">
+          <article class="about-panel panel">
+            <p class="eyebrow">ABOUT THIS PROJECT</p>
+            <h2>The midnight field<br />dossier system</h2>
+            <p class="lede">A personal, anime-styled command deck for CS2 statistics — built on top of real CSStats pages and kept fully self-hosted in a plain-data registry.</p>
+            <ul class="about-list">
+              <li><b>01 · DATA SOURCE</b><span>Numbers mirror each player's CSStats page. A live CSStats pull is attempted first; when the API is unreachable (auth, CORS, offline), the local snapshot renders instead — the profile never breaks.</span></li>
+              <li><b>02 · AVATARS</b><span>Profile pictures resolve from Steam's CDN first, then CSStats, then a local placeholder. External outages degrade gracefully.</span></li>
+              <li><b>03 · PLAYERS</b><span>The registry in <code>data/players.js</code> is the single source of truth. Add a player once — search, profiles, compare and widgets all pick them up automatically.</span></li>
+              <li><b>04 · EXTENSIONS</b><span>Embeddable stat widgets, a weighted comparison engine, five color themes, and a dedicated dossier for <a href="arshi.html">Arshi</a> ship in the same three-file stack.</span></li>
+            </ul>
+            <footer class="about-foot"><span>STACK</span><b>HTML + CSS + VANILLA JS</b><span>·</span><b>NO BUILD STEP</b><span>·</span><b>FILE:// FRIENDLY</b></footer>
+          </article>
+          <aside class="side-panel">
+            <article class="side-card panel accent-cyan">
+              <p class="eyebrow">ROUTE 01</p>
+              <h3>Player profiles</h3>
+              <p>Open a profile page for any tracked Steam player — rank, KPIs, maps, weapons, recent form.</p>
+              <a class="text-button" href="#search">SEARCH ABOVE ↗</a>
             </article>
-            <article class="quick-card panel"><div class="card-heading"><div><p class="eyebrow">SESSION SIGNALS</p><h2>At a glance</h2></div><span class="radar-icon">◎</span></div><div class="signal-list"><div><span>Rounds played</span><b>3,448</b></div><div><span>Damage dealt</span><b>195,088</b></div><div><span>ADR</span><b>57</b></div><div><span>KAST</span><b>60%</b></div></div><div class="mini-radar"><span class="radar-label r1">AIM</span><span class="radar-label r2">TRADES</span><span class="radar-label r3">CLUTCH</span><span class="radar-label r4">ENTRY</span><div class="radar-shape"></div></div></article>
-          </div>
-
-          <div class="lower-grid">
-            <article class="map-preview panel"><div class="card-heading"><div><p class="eyebrow">MAP POOL</p><h2>Where you queue</h2></div><button class="text-button" type="button" data-view-target="maps">VIEW MAPS ↗</button></div><div class="map-list"><div class="map-row"><img src="https://static.csstats.gg/images/maps/icons/de_dust2_v2.png" alt="Dust2"/><span>Dust2</span><div class="bar"><i style="width:100%"></i></div><b>84</b><em>31% WR</em></div><div class="map-row"><img src="https://static.csstats.gg/images/maps/icons/cs2/de_mirage.png" alt="Mirage"/><span>Mirage</span><div class="bar"><i style="width:40%"></i></div><b>34</b><em>38% WR</em></div><div class="map-row"><img src="https://static.csstats.gg/images/maps/icons/cs2/de_inferno.png" alt="Inferno"/><span>Inferno</span><div class="bar"><i style="width:29%"></i></div><b>24</b><em>29% WR</em></div><div class="map-row"><img src="https://static.csstats.gg/images/maps/icons/cs2/de_nuke.png" alt="Nuke"/><span>Nuke</span><div class="bar"><i style="width:17%"></i></div><b>14</b><em>36% WR</em></div></div></article>
-            <article class="weapon-preview panel"><div class="card-heading"><div><p class="eyebrow">LOADOUT DNA</p><h2>Your main weapons</h2></div><button class="text-button" type="button" data-view-target="weapons">FULL ARMORY ↗</button></div><div class="weapon-list"><div class="weapon-tile"><img src="https://static.csstats.gg/images/weapons/ak47_light.png" alt="AK-47"/><span>AK-47</span><b>557 <small>KILLS</small></b></div><div class="weapon-tile"><img src="https://static.csstats.gg/images/weapons/m4a1_silencer_light.png" alt="M4A1-S"/><span>M4A1-S</span><b>426 <small>KILLS</small></b></div><div class="weapon-tile"><img src="https://static.csstats.gg/images/weapons/usp_silencer_light.png" alt="USP-S"/><span>USP-S</span><b>153 <small>KILLS</small></b></div><div class="weapon-tile"><img src="https://static.csstats.gg/images/weapons/famas_light.png" alt="Famas"/><span>FAMAS</span><b>93 <small>KILLS</small></b></div></div></article>
-          </div>
-        </section>
-
-        <section class="view" data-panel="weapons"><article class="table-card panel"><div class="card-heading"><div><p class="eyebrow">ARMORY ANALYSIS</p><h2>Weapon signature</h2></div><span class="table-note">SORTED BY KILLS</span></div><div class="weapon-table" id="weapon-table"></div></article></section>
-        <section class="view" data-panel="maps"><article class="table-card panel"><div class="card-heading"><div><p class="eyebrow">MAP ANALYSIS</p><h2>Territory report</h2></div><span class="table-note">13 MAPS TRACKED</span></div><div class="map-table" id="map-table"></div></article></section>
-        <section class="view" data-panel="matches"><article class="table-card panel"><div class="card-heading"><div><p class="eyebrow">MATCH ARCHIVE</p><h2>Recent encounters</h2></div><span class="table-note">LAST 10 GAMES</span></div><div class="matches-table" id="matches-table"></div></article></section>
+            <article class="side-card panel accent-yellow">
+              <p class="eyebrow">ROUTE 02</p>
+              <h3>Head-to-head</h3>
+              <p>Two players, one weighted scoreboard. Metrics are modular — tune the weights any time.</p>
+              <a class="text-button" href="compare.html">OPEN COMPARE ↗</a>
+            </article>
+            <article class="side-card panel accent-violet">
+              <p class="eyebrow">ROUTE 03</p>
+              <h3>Embed widgets</h3>
+              <p>Grab a snippet that renders any player's live stats on another website.</p>
+              <a class="text-button" href="widgets.html">OPEN WIDGETS ↗</a>
+            </article>
+            <article class="side-card panel accent-pink">
+              <p class="eyebrow">ROUTE 04</p>
+              <h3>Arshi's dossier</h3>
+              <p>The full illustrated profile that started this project — kept as its own dedicated page.</p>
+              <a class="text-button" href="arshi.html">OPEN DOSSIER ↗</a>
+            </article>
+          </aside>
+        </div>
       </main>
 
-      <footer class="footer"><span>ARSHI // MIDNIGHT FIELD</span><span>DATA SOURCE <a href="https://csstats.gg/player/76561199524171843" target="_blank" rel="noreferrer">CSSTATS.GG ↗</a></span><span>SNAPSHOT MODE · SEPT 2026</span></footer>
+      <footer class="footer"><span>MIDNIGHT FIELD // UNIVERSAL INDEX</span><span>DATA SOURCE <a href="https://csstats.gg/player" target="_blank" rel="noreferrer">CSSTATS.GG ↗</a></span><span>REGISTRY DRIVEN · SEPT 2026</span></footer>
     </div>
-    <div class="toast" id="toast" role="status" aria-live="polite">Snapshot refreshed</div>
-    <script src="script.js"></script>
+    <script src="data/players.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/home.js"></script>
   </body>
 </html>

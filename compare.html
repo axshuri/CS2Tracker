@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Compare two CS2 players side by side — weighted, modular scoring across rating, K/D, ADR, win rate, and more." />
+    <meta name="theme-color" content="#080d1b" />
+    <title>HEAD-TO-HEAD // MIDNIGHT FIELD</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('arshi-theme') || 'midnight';
+          var m = { midnight: '#080d1b', daybreak: '#f4efe6', synthwave: '#0d0416', forest: '#0a130d', terminal: '#0b0a07' }[t];
+          document.documentElement.setAttribute('data-theme', t);
+          if (m) document.querySelector('meta[name="theme-color"]').setAttribute('content', m);
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="compare">
+    <a class="skip-link" href="#compare-content">Skip to comparison</a>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Midnight Field home">
+          <span class="brand-mark">✦</span>
+          <span><b>FIELD DOSSIER</b><small>UNIVERSAL CS2 TRACKER</small></span>
+        </a>
+        <div class="topbar-status"><i></i><span>COMPARISON LAB</span><b>ENGINE v1 · WEIGHTED</b></div>
+        <div class="topbar-actions">
+          <a class="icon-button" href="https://csstats.gg/player" target="_blank" rel="noreferrer" aria-label="Open CSStats">↗</a>
+          <div class="theme-switch">
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Switch color theme">
+              <span class="theme-swatch" aria-hidden="true"><i class="a"></i><i class="b"></i></span>
+              <span class="theme-toggle-label" id="theme-toggle-label">MIDNIGHT</span>
+              <span class="theme-caret" aria-hidden="true">▾</span>
+            </button>
+            <div class="theme-menu" id="theme-menu" role="menu" aria-label="Color themes">
+              <p class="theme-menu-title">COLOR THEME</p>
+              <button type="button" role="menuitem" data-theme="midnight"><i class="theme-dots" style="--a:#f07aa5;--b:#8eddd5"></i><span><b>MIDNIGHT</b><small>NEON SAKURA</small></span><em class="check">✓</em></button>
+              <button type="button" role="menuitem" data-theme="daybreak"><i class="theme-dots" style="--a:#d64545;--b:#0e7a72"></i><span><b>DAYBREAK</b><small>WARM PAPER</small></span><em class="check">✓</em></button>
+              <button type="button" role="menuitem" data-theme="synthwave"><i class="theme-dots" style="--a:#ff3ecf;--b:#21e6ff"></i><span><b>SYNTHWAVE</b><small>RETRO NEON</small></span><em class="check">✓</em></button>
+              <button type="button" role="menuitem" data-theme="forest"><i class="theme-dots" style="--a:#e8914f;--b:#7fd8a4"></i><span><b>FOREST</b><small>DEEP MOSS</small></span><em class="check">✓</em></button>
+              <button type="button" role="menuitem" data-theme="terminal"><i class="theme-dots" style="--a:#ffb64d;--b:#cfe3a8"></i><span><b>TERMINAL</b><small>PHOSPHOR CRT</small></span><em class="check">✓</em></button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <nav class="site-nav" aria-label="Primary">
+        <div class="site-nav-links">
+          <a class="site-link" href="index.html">HOME</a>
+          <a class="site-link" href="player.html">PROFILE</a>
+          <a class="site-link active" href="compare.html" aria-current="page">COMPARE</a>
+          <a class="site-link" href="widgets.html">WIDGETS</a>
+          <a class="site-link accent" href="arshi.html">ARSHI DOSSIER</a>
+        </div>
+        <div class="site-search">
+          <input id="nav-search" type="search" placeholder="Search any player…  name / Steam ID / profile URL" autocomplete="off" role="combobox" aria-expanded="false" aria-label="Search players" />
+          <div class="search-results" id="nav-search-results" role="listbox"></div>
+        </div>
+      </nav>
+
+      <main id="compare-content">
+        <section class="vs-stage">
+          <p class="eyebrow">HEAD-TO-HEAD <span>// WEIGHTED METRICS</span></p>
+          <h1 class="vs-title">Who <strong>edges</strong> the duel?</h1>
+          <p class="vs-sub">Pick two tracked players. Every shared statistic is compared, weighted by importance (rating and K/D weigh most), and tallied into one verdict — based purely on the numbers, never the names.</p>
+        </section>
+
+        <section class="vs-grid">
+          <article class="vs-slot panel" id="slot-a" data-slot="a" aria-label="Player A">
+            <div class="panel-heading"><span>PLAYER A</span><button class="text-button slot-clear" type="button" hidden>CLEAR ✕</button></div>
+            <div class="slot-body"><div class="slot-placeholder">CHOOSE PLAYER A <span>⌕</span></div><div class="slot-picker" hidden></div></div>
+          </article>
+          <div class="vs-medallion" aria-hidden="true"><span>VS</span></div>
+          <article class="vs-slot panel" id="slot-b" data-slot="b" aria-label="Player B">
+            <div class="panel-heading"><span>PLAYER B</span><button class="text-button slot-clear" type="button" hidden>CLEAR ✕</button></div>
+            <div class="slot-body"><div class="slot-placeholder">CHOOSE PLAYER B <span>⌕</span></div><div class="slot-picker" hidden></div></div>
+          </article>
+        </section>
+
+        <section class="vs-output" id="vs-output" hidden>
+          <article class="verdict panel" id="verdict"></article>
+          <article class="table-card panel vs-table">
+            <div class="card-heading"><div><p class="eyebrow">METRIC SCOREBOARD</p><h2>Stat by stat</h2></div><span class="table-note" id="vs-table-note"></span></div>
+            <div class="vs-rows" id="vs-rows"></div>
+          </article>
+          <p class="vs-engine-note"><b>ENGINE NOTES</b> — Scoring is modular: metric weights live in <code>COMPARISON_METRICS</code> inside <code>data/players.js</code>. Adjust a weight, add a metric, or set <code>higherIsBetter:false</code> without touching any page. Rows marked <em>no data</em> are reported but excluded from the tally.</p>
+        </section>
+      </main>
+
+      <footer class="footer"><span>MIDNIGHT FIELD // COMPARISON LAB</span><span>SCORING <a href="index.html" >PLAYERDATA ENGINE ↗</a></span><span>WEIGHTED · SEPT 2026</span></footer>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="data/players.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/compare-page.js"></script>
+  </body>
+</html>
